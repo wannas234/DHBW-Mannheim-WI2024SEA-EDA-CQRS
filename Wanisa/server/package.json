@@ -1,0 +1,20 @@
+{
+  "name": "smart-home-event-bus",
+  "version": "1.0.0",
+  "description": "Smart Home System with EDA and CQRS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "event-driven-architecture",
+    "cqrs",
+    "smart-home",
+    "websocket"
+  ],
+  "author": "DHBW Mannheim WI2024 SEA",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.14.2"
+  }
+}
