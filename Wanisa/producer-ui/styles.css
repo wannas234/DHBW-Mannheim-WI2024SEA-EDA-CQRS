@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'inter', sans-serif;
+}
+body {
+  background: #ffffff;
+  color: #000000;
+  padding: 20px;
+  min-height: 100vh;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.header h1 {
+  font-size: 2.5rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #dc3545;
+}
+.status-dot.connected {
+  background: #28a745;
+}
+.section {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+.section h2 {
+  color: #000000;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+button {
+  flex: 1;
+  min-width: 120px;
+  padding: 15px 20px;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:active {
+  opacity: 0.8;
+}
+.temp-control {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.temp-display {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+  min-width: 80px;
+}
+.log-entry {
+  background: #f0f0f0;
+  padding: 10px 15px;
+  border-left: 3px solid #000000;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.log-entry .time {
+  color: #666666;
+}
+.log-entry .type {
+  color: #000000;
+  font-weight: 600;
+}
+.empty-log {
+  color: #666666;
+  text-align: center;
+  padding: 20px;
+}
+.temp-control button.temp-btn {
+  flex: 0;
+  min-width: auto;
+  padding: 10px 15px;
+}
+.heating-off {
+  background: #e9ecef !important;
+  border-color: #999999 !important;
+  color: #666666 !important;
+}
+.alarm-btn {
+  width: 100%;
+  background: #ffe5e5 !important;
+  border-color: #dc3545 !important;
+  color: #c82333 !important;
+}
+#eventLog {
+  max-height: 300px;
+  overflow-y: auto;
+}

@@ -1,6 +1,6 @@
 # Smart Home System - EDA & CQRS
 
-Minimales Smart Home System mit Event-Driven Architecture und CQRS Pattern.
+Minimales Smart Home (TRANQUILO) System mit Event-Driven Architecture und CQRS Pattern.
 
 ## Setup
 
@@ -9,6 +9,7 @@ Minimales Smart Home System mit Event-Driven Architecture und CQRS Pattern.
 
 ### 1. Server starten
 
+cd Wanisa
 
 cd server
 

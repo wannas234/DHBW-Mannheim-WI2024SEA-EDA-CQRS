@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'inter', sans-serif;
+}
+body {
+  background: #ffffff;
+  color: #000000;
+  padding: 20px;
+  min-height: 100vh;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.header h1 {
+  font-size: 2.5rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+.card {
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 20px;
+  transition: all 0.5s ease;
+  backdrop-filter: blur(10px);
+}
+.card h2 {
+  color: #000000;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+.lights-card {
+  text-align: center;
+}
+.light-status {
+  font-size: 3rem;
+  margin: 20px 0;
+}
+.light-text {
+  font-size: 1.3rem;
+  color: #666666;
+}
+.lights-card.on {
+  border-color: #000000;
+  background: #fff9e6;
+}
+.lights-card.on .light-text {
+  color: #000000;
+}
+.heating-card {
+  text-align: center;
+}
+.temp-big {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #666666;
+  margin: 20px 0;
+}
+.heating-mode {
+  font-size: 1.1rem;
+  color: #666666;
+}
+.heating-card.on {
+  border-color: #ff9632;
+  background: #fff3e6;
+}
+.heating-card.on .temp-big {
+  color: #ff9632;
+}
+.heating-card.on .heating-mode {
+  color: #ff9632;
+}
+.alarm-card {
+  text-align: center;
+}
+.alarm-status {
+  font-size: 2rem;
+  margin: 20px 0;
+  color: #999;
+}
+.alarm-text {
+  font-size: 1.2rem;
+}
+.alarm-card.triggered {
+  border-color: #dc3545;
+  background: #ffe5e8;
+}
+.alarm-card.triggered .alarm-status {
+  color: #dc3545;
+}
+.event-feed {
+  max-height: 250px;
+  overflow-y: auto;
+}
+.event-item {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.85rem;
+  color: #666666;
+}
+.event-item:last-child {
+  border-bottom: none;
+}
+.event-item .type {
+  color: #000000;
+  font-weight: 600;
+}
+.event-feed .empty-message {
+  color: #666666;
+  text-align: center;
+  padding: 20px;
+}

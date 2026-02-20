@@ -1,130 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>SmartHome, die Anzeige für den Ednuser</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: #0a0a0f;
-        color: #e0e0e0;
-        padding: 20px;
-        min-height: 100vh;
-      }
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      .header {
-        text-align: center;
-        margin-bottom: 40px;
-      }
-      .header h1 {
-        font-size: 2.5rem;
-        color: #f0e040;
-        margin-bottom: 10px;
-      }
-      .card {
-        background: rgba(20, 20, 30, 0.7);
-        border: 2px solid rgba(240, 224, 64, 0.3);
-        border-radius: 12px;
-        padding: 30px;
-        margin-bottom: 20px;
-        transition: all 0.5s ease;
-        backdrop-filter: blur(10px);
-      }
-      .card h2 {
-        color: #f0e040;
-        margin-bottom: 15px;
-        font-size: 1.5rem;
-      }
-      .lights-card {
-        text-align: center;
-      }
-      .light-status {
-        font-size: 3rem;
-        margin: 20px 0;
-      }
-      .light-text {
-        font-size: 1.3rem;
-        color: #999;
-      }
-      .lights-card.on {
-        border-color: #f0e040;
-        background: rgba(45, 40, 20, 0.6);
-      }
-
-      .lights-card.on .light-text {
-        color: #f0e040;
-      }
-
-      .heating-card {
-        text-align: center;
-      }
-      .temp-big {
-        font-size: 3.5rem;
-        font-weight: 700;
-        font-family: 'Courier New', monospace;
-        color: #999;
-        margin: 20px 0;
-      }
-      .heating-mode {
-        font-size: 1.1rem;
-        color: #999;
-      }
-      .heating-card.on {
-        border-color: #ff9632;
-        background: rgba(50, 30, 15, 0.6);
-      }
-      .heating-card.on .temp-big {
-        color: #ff9632;
-      }
-      .heating-card.on .heating-mode {
-        color: #ff9632;
-      }
-      .alarm-card {
-        text-align: center;
-      }
-      .alarm-status {
-        font-size: 2rem;
-        margin: 20px 0;
-        color: #999;
-      }
-      .alarm-text {
-        font-size: 1.2rem;
-      }
-      .alarm-card.triggered {
-        border-color: #ff6464;
-        background: rgba(50, 15, 15, 0.8);
-      }
-      .alarm-card.triggered .alarm-status {
-        color: #ff6464;
-      }
-      .event-feed {
-        max-height: 250px;
-        overflow-y: auto;
-      }
-      .event-item {
-        padding: 8px 12px;
-        border-bottom: 1px solid rgba(240, 224, 64, 0.1);
-        font-size: 0.85rem;
-        font-family: 'Courier New', monospace;
-        color: #999;
-      }
-      .event-item:last-child {
-        border-bottom: none;
-      }
-      .event-item .type {
-        color: #f0e040;
-        font-weight: 600;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css"/>
   </head>
   <body>
     <div class="container">
@@ -149,7 +28,7 @@
       <div class="card">
         <h2>Events</h2>
         <div class="event-feed" id="eventFeed">
-          <div style="color: #555; text-align: center; padding: 20px;">Warte auf Events...</div>
+          <div class="empty-message">Warte auf Events...</div>
         </div>
       </div>
     </div>
@@ -160,7 +39,7 @@
 
       let state = {
         lights: 'off',
-        heating: { temp: null, mode: 'off' },
+        heating: { temp: null, mode: 'off'},
         alarm: { active: false },
       };
       function connectToEventBus() {
@@ -182,8 +61,7 @@
         } catch (err) {
           console.error('Connection failed:', err);
           setTimeout(connectToEventBus, 3000);
-        }
-      }
+        }}
       function onEvent(event) {
         const { type, payload } = event;
         if (type === 'LICHT_UMGESCHALTET') {
@@ -263,8 +141,7 @@
             <span class="type">${e.type}</span>
             <span> • ${e.time}</span>
           </div>
-        `).join('');
-      }
+        `).join('');}
       document.addEventListener('DOMContentLoaded', connectToEventBus);
     </script>
   </body>
