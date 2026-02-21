@@ -1,16 +1,8 @@
 const eventBus = require('./eventBus');
 
-const VALID_COMMANDS = new Set([
-  'LICHT_UMSCHALTEN',
-  'HEIZUNG_STELLEN',
-  'ALARM_AKTIVIEREN',
-]);
 function handleCommand(command) {
   if (!command || !command.type) {
     throw new Error('Befehl muss einen Typ haben');
-  }
-  if (!VALID_COMMANDS.has(command.type)) {
-    throw new Error(`Ungültiger Befehlstyp: ${command.type}`);
   }
   switch (command.type) {
     case 'LICHT_UMSCHALTEN':
@@ -23,7 +15,7 @@ function handleCommand(command) {
       handleActivateAlarm(command.payload);
       break;
     default:
-      throw new Error(`Nicht behandelter Befehl: ${command.type}`);
+      throw new Error(`Unbekannter Befehl: ${command.type}`);
   }
 }
 function handleToggleLight(payload) {
@@ -53,15 +45,15 @@ function handleSetHeating(payload) {
   });
 }
 function handleActivateAlarm(payload) {
-  if (!payload || !payload.zone || !payload.severity) {
-    throw new Error('ALARM_AKTIVIEREN benötigt Zone und Schweregrad');
+  if (!payload || !payload.zone || !payload.wichtigkeit) {
+    throw new Error('ALARM_AKTIVIEREN benötigt Zone und wichtigkeit');
   }
   eventBus.publish({
     topic: 'home.security',
     type: 'ALARM_AUSGELÖST',
     payload: {
       zone: payload.zone,
-      severity: payload.severity,
+      wichtigkeit: payload.wichtigkeit,
     },
   });
 }

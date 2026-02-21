@@ -4,10 +4,6 @@ const eventBus = require('./eventBus');
 const { handleCommand } = require('./commandHandler');
 
 const PORT = 8080;
-const startTime = Date.now();
-
-function getUptime() {
-  return Math.floor((Date.now() - startTime) / 1000);}
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'application/json');
@@ -23,8 +19,7 @@ const server = http.createServer((req, res) => {
 });
 function handleHealthCheck(res) {
   const health = {
-    status: 'ok',
-    uptime: getUptime(),
+    status: 'ALLES TRANQUILO',
     timestamp: new Date().toISOString(),
   };
   res.writeHead(200);
@@ -43,7 +38,9 @@ function handleEventsQuery(res) {
 const wss = new WebSocket.Server({ server });
 wss.on('connection', (ws) => {
   console.log('[WebSocket] New client connected');
-  eventBus.subscribe('*', ws);
+  eventBus.subscribe('home.lights', ws);
+  eventBus.subscribe('home.heating', ws);
+  eventBus.subscribe('home.security', ws);
   ws.send(JSON.stringify({
     kind: 'SYSTEM',
     type: 'VERBUNDEN',
@@ -68,7 +65,6 @@ wss.on('connection', (ws) => {
   });
   ws.on('close', () => {
     console.log('[WebSocket] Client disconnected');
-    eventBus.unsubscribeAll(ws);
   });
   ws.on('error', (error) => {
     console.error('[WebSocket] Error:', error.message);

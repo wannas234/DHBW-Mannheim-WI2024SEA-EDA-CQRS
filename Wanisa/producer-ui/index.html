@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>SmartHome die Steuerung</title>
     <link rel="stylesheet" href="styles.css"/>
   </head>
@@ -9,10 +8,6 @@
     <div class="container">
       <div class="header">
         <h1>SmartHome Tranquilo Admin</h1>
-        <div class="status">
-          <div class="status-dot" id="statusDot"></div>
-          <span id="statusText">Verbindung wird hergestellt...</span>
-        </div>
       </div>
       <div class="section">
         <h2>Lichter</h2>
@@ -33,7 +28,7 @@
       </div>
       <div class="section">
         <h2>Alarm</h2>
-        <button class="alarm-btn" onclick="sendCommand('ALARM_AKTIVIEREN', { zone: 'Eingang', severity: 'high' })">Alarm auslösen</button>
+        <button class="alarm-btn" onclick="sendCommand('ALARM_AKTIVIEREN', { zone: 'Eingang', wichtigkeit: 'high' })">Alarm auslösen</button>
       </div>
       <div class="section">
         <h2>Log</h2>
@@ -52,7 +47,6 @@
           ws = new WebSocket(WS_URL);
           ws.onopen = () => {
             console.log('Connected');
-            updateStatus(true);
           };
           ws.onmessage = (e) => {
             try {
@@ -66,23 +60,11 @@
           };
           ws.onerror = (err) => console.error('WebSocket error:', err);
           ws.onclose = () => {
-            updateStatus(false);
             setTimeout(connectToEventBus, 3000);
           };
         } catch (err) {
           console.error('Connection failed:', err);
           setTimeout(connectToEventBus, 3000);
-        }
-      }
-      function updateStatus(connected) {
-        const dot = document.getElementById('statusDot');
-        const text = document.getElementById('statusText');
-        if (connected) {
-          dot.classList.add('connected');
-          text.textContent = 'Verbunden';
-        } else {
-          dot.classList.remove('connected');
-          text.textContent = 'Verbindung getrennt';
         }
       }
       function sendCommand(type, payload) {

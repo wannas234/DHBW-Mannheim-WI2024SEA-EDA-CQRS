@@ -12,22 +12,13 @@ class EventBus extends EventEmitter {
     }
     this.subscribers.get(topic).add(wsClient);
   }
-  unsubscribeAll(wsClient) {
-    for (const subscribers of this.subscribers.values()) {
-      subscribers.delete(wsClient);
-    }}
   publish(event) {
     if (!event.topic || !event.type) {
       throw new Error('Ereignis muss Topic und Typ haben');
     }
-    const enrichedEvent = {
-      ...event,
-      eventId: `evt-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      timestamp: new Date().toISOString(),
-    };
-    this.eventLog.push(enrichedEvent);
-    this._notifySubscribers(event.topic, enrichedEvent);
-    this._notifySubscribers('*', enrichedEvent);}
+    this.eventLog.push(event);
+    this._notifySubscribers(event.topic, event);
+  }
   _notifySubscribers(topic, event) {
     const subscribers = this.subscribers.get(topic);
     if (!subscribers) return;
@@ -39,10 +30,10 @@ class EventBus extends EventEmitter {
             event,
           }));
         } catch (error) {
-          console.error('[EventBus] Fehler beim Senden des Ereignisses:', error.message);
+          console.error('EventBus Fehler beim Senden des Ereignisses:', error.message);
         }}}}
   getEventLog() {
-    return [...this.eventLog];
+    return this.eventLog;
   }}
 
 module.exports = new EventBus();
